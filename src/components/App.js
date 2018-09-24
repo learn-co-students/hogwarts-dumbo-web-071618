@@ -9,7 +9,7 @@ class App extends Component {
     super()
     this.state = {
       hogs: [],
-      getData: true
+      showAll: true
     }
   }
 
@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   getData() {
-    this.setState({hogs: hogs}, () => {
+    this.setState({hogs: hogs, showAll: true}, () => {
     })
   }
 
@@ -26,14 +26,13 @@ class App extends Component {
     this.setState({type: event.target.value})
     const type = event.target.value
     if (type === "name"){
-      this.setState({hogs: this.sortByName(this.state.hogs)})
+      this.setState({hogs: this.sortByName(this.state.hogs), showAll: false})
     } else if (type === "weight") {
-      this.setState({hogs: this.sortByWeight(this.state.hogs)})
+      this.setState({hogs: this.sortByWeight(this.state.hogs), showAll: false})
     } else if (type==="greased") {
-      this.setState({hogs: this.filterByGrease(this.state.hogs)})
+      this.setState({hogs: this.filterByGrease(this.state.hogs), showAll: false})
     } else if (type==="all"){
       this.getData()
-
     }
   }
 
@@ -61,8 +60,8 @@ class App extends Component {
     return hogArray.filter( hog => hog.greased)
   }
 
-  isThisPigHidden = (changeStateByApp, currentTileState) => {
-    return [changeStateByApp, currentTileState]
+  isThisPigHidden = () => {
+    this.setState({ showAll: false})
   }
 
 
@@ -73,7 +72,8 @@ class App extends Component {
         <HogContainer
           allHogs={this.state.hogs}
           sortByType={this.sortByType}
-          isThisPigHidden={this.isThisPigHidden}/>
+          isThisPigHidden={this.isThisPigHidden}
+          showAll={this.state.showAll}/>
       </div>
     )
   }

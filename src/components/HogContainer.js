@@ -3,10 +3,12 @@ import HogTile from './HogTile'
 
 
 const HogContainer = (props) => {
+  
     return(
         <div className="ui link cards">
           {props.allHogs.map( hog => {
-            return <HogTile thisHog={hog} key={hog.name} isThisPigHidden={props.isThisPigHidden}/>
+            return <HogTile thisHog={hog} key={hog.name} isThisPigHidden={props.isThisPigHidden}
+              showAll={props.showAll}/>
           })}
         </div>
         )
