@@ -8,7 +8,8 @@ class App extends Component {
   constructor(){
     super()
     this.state = {
-      hogs: []
+      hogs: [],
+      getData: true
     }
   }
 
@@ -30,8 +31,9 @@ class App extends Component {
       this.setState({hogs: this.sortByWeight(this.state.hogs)})
     } else if (type==="greased") {
       this.setState({hogs: this.filterByGrease(this.state.hogs)})
-    } else {
+    } else if (type==="all"){
       this.getData()
+
     }
   }
 
@@ -57,17 +59,21 @@ class App extends Component {
 
   filterByGrease = (hogArray) => {
     return hogArray.filter( hog => hog.greased)
-
   }
 
-
+  isThisPigHidden = (changeStateByApp, currentTileState) => {
+    return [changeStateByApp, currentTileState]
+  }
 
 
   render() {
     return (
       <div className="App">
-        < Nav />
-        <HogContainer allHogs={this.state.hogs} sortByType={this.sortByType}/>
+        < Nav sortByType={this.sortByType} />
+        <HogContainer
+          allHogs={this.state.hogs}
+          sortByType={this.sortByType}
+          isThisPigHidden={this.isThisPigHidden}/>
       </div>
     )
   }
