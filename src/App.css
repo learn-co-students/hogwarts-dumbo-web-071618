@@ -12,12 +12,12 @@
   transform: scale(1.5);
 }
 
-.navWrapper {
+/* .navWrapper {
   margin-bottom: 2%;
-}
+} */
 
 .filterWrapper {
-  margin: 2% 0% 2% 0%;
+  margin: 20px;
 }
 
 .headerText {
@@ -80,7 +80,7 @@ ul {
   float: left;
   margin: 2%;
   padding: 1%;
-  outline: #3B0B0B dotted thick;
+  outline: #FF69B4 dotted thick;
   transition: 0.75s;
   opacity: 1;
 }
