@@ -1,4 +1,4 @@
-const hogs = [
+let hogs = [
   {
     name: 'Mudblood',
     specialty: 'Mediocre magic',
@@ -91,5 +91,22 @@ const hogs = [
     'highest medal achieved': 'wood'
   }
 ];
+
+hogs = hogs.map(hog => {
+	let weightKey = Object.keys(hog)[3]
+	let medalKey = Object.keys(hog)[4]
+
+	let weight = hog[weightKey]
+	let medal = hog[medalKey]
+
+	delete hog[weightKey]
+	delete hog[medalKey]
+
+	return { ...hog,
+		weight: weight,
+		highestMedal: medal,
+		image: hog.name.toLowerCase().split(' ').join('_') + ".jpg"
+	}
+})
 
 export default hogs;
